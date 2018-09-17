@@ -1,6 +1,7 @@
 
 org 100h
 
+section .text
 ; mode13 graphics
 mov ah, 00h
 mov al, 13h
@@ -11,9 +12,9 @@ wait_for_key:
 mov ah, 08h
 int 21h
 
-; show the typed key
-mov ah, 02h
-mov dl, al
+; show the message
+mov dx, msg
+mov ah, 09h
 int 21h
 
 ; press 'x' to quit
@@ -29,3 +30,6 @@ mov ah, 4Ch
 int 21h
 
 
+
+section .data
+        msg db 'Hello World!', 0Dh, 0Ah, '$'
