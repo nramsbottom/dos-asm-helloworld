@@ -18,10 +18,13 @@ wait_for_key:
 mov ah, 08h
 int 21h
 
+inc byte [cnt]
+
 ; press 'x' to quit
 cmp al, 78h
 je exit
-jmp show_message
+cmp byte [cnt], 3
+jne show_message
 
 
 
@@ -31,6 +34,10 @@ mov ah, 4Ch
 int 21h
 
 
+draw_circle:
+
+
 
 section .data
         msg db 'Hello World!', 0Dh, 0Ah, '$'
+        cnt db 0
